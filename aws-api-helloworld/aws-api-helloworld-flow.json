@@ -1,0 +1,153 @@
+[
+    {
+        "id": "main.flow",
+        "type": "tab",
+        "label": "main",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "test.flow",
+        "type": "tab",
+        "label": "test",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "eacbb9ef.69d5c8",
+        "type": "EventListener",
+        "z": "main.flow",
+        "name": "GET /hello",
+        "provider": "aws",
+        "eventSource": "api",
+        "dynamodbOperation": "",
+        "apiMethod": "get",
+        "apiUrl": "/hello",
+        "albMethod": "any",
+        "albUrl": "",
+        "bucketName": "",
+        "event": "",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "5eb3cd61.894f04"
+            ]
+        ],
+        "caname": "event-handler",
+        "category": "general"
+    },
+    {
+        "id": "5eb3cd61.894f04",
+        "type": "Logger",
+        "z": "main.flow",
+        "name": "Log",
+        "level": "INFO",
+        "message": "Hello World",
+        "format": "string",
+        "headers": {},
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "b5fc6ccd.17dd7"
+            ]
+        ],
+        "caname": "logger",
+        "category": "logging"
+    },
+    {
+        "id": "b5fc6ccd.17dd7",
+        "type": "EventListener-End",
+        "z": "main.flow",
+        "name": "Success",
+        "statusCode": "200",
+        "responseType": "http",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "payload": "{\"message\": \"Hello World!!\"}",
+        "eventPayload": "",
+        "eventType": "success",
+        "x": 520,
+        "y": 160,
+        "wires": [],
+        "caname": "eventlistenerend",
+        "category": "general"
+    },
+    {
+        "id": "b970b7d2.5454c8",
+        "type": "Assertion",
+        "z": "test.flow",
+        "name": "Check Message",
+        "selector": "jsonBody",
+        "property": "message",
+        "comparison": "equals",
+        "value": "Hello World!!",
+        "x": 262.5,
+        "y": 72.5,
+        "wires": [
+            [
+                "e0721cc7.653eb"
+            ]
+        ],
+        "caname": "test-assertion",
+        "category": "testing"
+    },
+    {
+        "id": "e0721cc7.653eb",
+        "type": "TestCaseEnd",
+        "z": "test.flow",
+        "name": "TestCase End",
+        "x": 357.5,
+        "y": 72.5,
+        "wires": [],
+        "caname": "test-case-end",
+        "category": "testing"
+    },
+    {
+        "id": "e8fb91dc.46c24",
+        "type": "HTTPTestCase",
+        "z": "test.flow",
+        "name": "TestCase HelloWorld",
+        "method": "GET",
+        "path": "/hello",
+        "headers": {
+            "Accept": "application/json"
+        },
+        "authtype": "none",
+        "secUser": "",
+        "secPassword": "",
+        "secToken": "",
+        "payload": "",
+        "mocks": [],
+        "x": 72.5,
+        "y": 72.5,
+        "wires": [
+            [
+                "9b5bda2f.a1afa8"
+            ]
+        ],
+        "caname": "http-test-case",
+        "category": "testing"
+    },
+    {
+        "id": "9b5bda2f.a1afa8",
+        "type": "Assertion",
+        "z": "test.flow",
+        "name": "Check Status",
+        "selector": "statusCode",
+        "property": "",
+        "comparison": "equals",
+        "value": "200",
+        "x": 167.5,
+        "y": 72.5,
+        "wires": [
+            [
+                "b970b7d2.5454c8"
+            ]
+        ],
+        "caname": "test-assertion",
+        "category": "testing"
+    }
+]
