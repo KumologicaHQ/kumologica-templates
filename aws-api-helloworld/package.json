@@ -12,7 +12,7 @@
         "test": "kl test"
     },
     "dependencies": {
-      "@kumologica/runtime": "3.0.26"
+      "@kumologica/runtime": "3.4.0"
     },
     "devDependencies": {
       "aws-sdk": "^2.513.0"
